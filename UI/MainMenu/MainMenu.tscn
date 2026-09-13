@@ -340,6 +340,11 @@ text = "Versão 1.1"
 label_settings = SubResource("LabelSettings_icg24")
 horizontal_alignment = 1
 
+[node name="LanguageSelector" type="OptionButton" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
 [node name="Buttons" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -376,4 +381,5 @@ autoplay = "FadeIn"
 [connection signal="pressed" from="Margin/Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Margin/Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Margin/Buttons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="item_selected" from="Margin/LanguageSelector" to="." method="_on_language_selected"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
