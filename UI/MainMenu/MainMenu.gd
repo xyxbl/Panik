@@ -7,6 +7,34 @@ signal go_to_options()
 signal go_to_credits()
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var language_selector : OptionButton = $Margin/LanguageSelector
+
+func _ready() -> void:
+	_setup_language_selector()
+	Localization.language_changed.connect(_on_localization_language_changed)
+
+func _setup_language_selector() -> void:
+	language_selector.clear()
+	var available_langs = Localization.get_available_languages()
+	for lang in available_langs:
+		language_selector.add_item(Localization.get_language_display_name(lang), hash(lang))
+	
+	# Set current language as selected
+	var current_index = 0
+	for i in range(language_selector.item_count):
+		if hash(Localization.get_available_languages()[i]) == language_selector.get_item_id(i):
+			current_index = i
+			break
+	language_selector.select(current_index)
+
+func _on_language_selected(index: int) -> void:
+	var available_langs = Localization.get_available_languages()
+	if index >= 0 and index < available_langs.size():
+		Localization.set_language(available_langs[index])
+
+func _on_localization_language_changed(new_lang: String) -> void:
+	# Update language selector to reflect the new language
+	_setup_language_selector()
 
 func _on_start_pressed() -> void:
 	go_to_game.emit()
