@@ -41,6 +41,11 @@ var can_target_player: bool = false
 
 var curr_player : Player
 
+func set_face(idx: int) -> void:
+	# Set the sprite frame to change the monster face at runtime
+	if sprite:
+		sprite.frame = idx
+
 func _ready() -> void:
 	player_collided.connect(get_tree().get_current_scene().enemy_got_player)
 	enemy_setup.call_deferred()
@@ -57,6 +62,8 @@ func _set_state(state: int) -> void:
 		EnemyState.Transforming:
 			transformation_audio.play()
 			animations.play("Transforming")
+			# example: change face at start of transforming (optional)
+			# set_face(12)
 			
 		EnemyState.RunningAfter:
 			#print("vai la meu fio")
@@ -101,7 +108,7 @@ func _physics_process(_delta: float) -> void:
 			intimitaded()
 		EnemyState.WalkingTowards:
 			wandering_behavior()
-
+	
 func wandering_behavior() -> void:
 	
 	if nav.is_navigation_finished():
@@ -144,7 +151,7 @@ func intimitaded() -> void:
 			
 		current_state = EnemyState.Transforming
 		current_target = curr_player.global_position
-
+	
 	elif stalker_patience.is_stopped() and not curr_player.is_looking_at_entity(self):
 		
 		current_state = EnemyState.WalkingTowards
@@ -180,7 +187,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		current_state = EnemyState.RunningAfter
 	if anim_name == "dissipate":
 		queue_free()
-
+	
 
 func _on_animation_player_animation_changed(old_name: StringName, new_name: StringName) -> void:
 	print("antiga: ", old_name)
