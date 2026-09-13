@@ -4,6 +4,7 @@ signal language_changed(new_lang: String)
 var current_lang := "pt"
 var translations := {
 	"pt": {
+		# Main Menu
 		"Começar": "Começar",
 		"Opções": "Opções",
 		"Créditos": "Créditos",
@@ -18,6 +19,26 @@ var translations := {
 		"Language": "Idioma",
 		"Portuguese": "Português",
 		"Chinese": "中文",
+		
+		# Game Over
+		"GAME OVER": "GAME OVER",
+		"Você morreu": "Você morreu",
+		"Voltar ao Menu": "Voltar ao Menu",
+		
+		# Introduction/Ending Dialogue
+		"Eu não queria que as coisas fossem assim": "Eu não queria que as coisas fossem assim",
+		"mas parece, que estou sem opções, eu preciso fazer isso": "mas parece, que estou sem opções, eu preciso fazer isso",
+		"sete partes, separadas aleatoriamente, em algum lugar": "sete partes, separadas aleatoriamente, em algum lugar",
+		"eu preciso encontra-lás, confrontar a criatura e sair desse lugar": "eu preciso encontra-lás, confrontar a criatura e sair desse lugar",
+		"Ou eu nunca irei encontrar paz em mim mesmo...": "Ou eu nunca irei encontrar paz em mim mesmo...",
+		
+		# Good Ending Dialogue
+		"E foi assim, que eu entrei no meu carro, e não olhei para trás.": "E foi assim, que eu entrei no meu carro, e não olhei para trás.",
+		"Os eventos dessa madrugada, eu não esquecerei.": "Os eventos dessa madrugada, eu não esquecerei.",
+		"Mas pelo menos, eles não me perturbaram mais...": "Mas pelo menos, eles não me perturbaram mais...",
+		"Ou pelo menos, eu espero...": "Ou pelo menos, eu espero...",
+		
+		# Settings/Options
 		"Back": "Voltar",
 		"Master Volume": "Volume Mestre",
 		"SFX Volume": "Volume Efeitos",
@@ -32,6 +53,7 @@ var translations := {
 		"Apply": "Aplicar",
 	},
 	"zh": {
+		# Main Menu
 		"Começar": "开始游戏",
 		"Opções": "选项",
 		"Créditos": "制作人员",
@@ -46,6 +68,26 @@ var translations := {
 		"Language": "语言",
 		"Portuguese": "葡萄牙语",
 		"Chinese": "中文",
+		
+		# Game Over
+		"GAME OVER": "游戏结束",
+		"Você morreu": "你死了",
+		"Voltar ao Menu": "返回菜单",
+		
+		# Introduction/Ending Dialogue
+		"Eu não queria que as coisas fossem assim": "我不希望事情是这样的",
+		"mas parece, que estou sem opções, eu preciso fazer isso": "但似乎我别无选择，我必须这样做",
+		"sete partes, separadas aleatoriamente, em algum lugar": "七个部分，随机分开，在某个地方",
+		"eu preciso encontra-lás, confrontar a criatura e sair desse lugar": "我需要找到它们，与生物对抗并离开这个地方",
+		"Ou eu nunca irei encontrar paz em mim mesmo...": "或者我永远找不到内心的平静...",
+		
+		# Good Ending Dialogue
+		"E foi assim, que eu entrei no meu carro, e não olhei para trás.": "就这样，我上了我的车，没有回头看。",
+		"Os eventos dessa madrugada, eu não esquecerei.": "我不会忘记今晚发生的事。",
+		"Mas pelo menos, eles não me perturbaram mais...": "但至少，他们不再打扰我了...",
+		"Ou pelo menos, eu espero...": "或者至少，我希望如此...",
+		
+		# Settings/Options
 		"Back": "返回",
 		"Master Volume": "主音量",
 		"SFX Volume": "音效音量",
