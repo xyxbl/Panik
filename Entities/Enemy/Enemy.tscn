@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Entities/Enemy/Enemy.gd" id="1_6lfre"]
 [ext_resource type="Script" path="res://Entities/PerceivingCamera.gd" id="2_rp2mf"]
-[ext_resource type="Texture2D" uid="uid://dp5qm7iodoi6e" path="res://assets/textures/Enemy/The_entity-Sheet_face-v1.png" id="3_74pd8"]
+[ext_resource type="Texture2D" uid="uid://dp5qm7iodoi6e" path="res://assets/textures/Enemy/The_entity-Sheet_face-v2.png" id="3_74pd8"]
 [ext_resource type="Shader" path="res://Entities/Enemy/Dissipate.gdshader" id="3_kv6gg"]
 [ext_resource type="AudioStream" uid="uid://dlmtaf8ln5oc1" path="res://assets/sounds/Monster/approaching2.ogg" id="4_xs15c"]
 [ext_resource type="Texture2D" uid="uid://c44eg43mrkfex" path="res://assets/textures/Enemy/Dissipate.png" id="5_cyofp"]
@@ -102,3 +102,77 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 3, 2, 1, 0]
 }
 
+[sub_resource type="Animation" id="Animation_b8aqt"]
+resource_name = "Angry"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 12, 11, 10, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5poo"]
+_data = {
+"Angry": SubResource("Animation_b8aqt"),
+"Intimidated": SubResource("Animation_xpfq8"),
+"Passive": SubResource("Animation_qywlv")
+}
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("perceiving_camera")]
+script = ExtResource("1_6lfre")
+perceiving_camera = NodePath("PerceivingCamera")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_61oeu")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+pixel_size = 0.01
+texture = ExtResource("3_74pd8")
+hframes = 5
+vframes = 4
+
+[node name="Dissipate" type="Sprite3D" parent="."]
+visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+pixel_size = 0.01
+texture = ExtResource("5_cyofp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_6ggev")
+
+[node name="Nose" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0171208, -0.999853, 0, 0.999853, 0.0171208, 0, 0.676226, 0.598399)
+visible = false
+mesh = SubResource("CapsuleMesh_6g78y")
+
+[node name="PerceivingCamera" type="Node3D" parent="."]
+script = ExtResource("2_rp2mf")
+
+[node name="ApproachingPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_xs15c")
+volume_db = -80.0
+
+[node name="MonsterSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_8rp4x")
+volume_db = -80.0
+script = ExtResource("6_8jjsw")
+audios = [ExtResource("7_8rp4x"), ExtResource("8_rxk7w"), ExtResource("9_fmbah"), ExtResource("10_jot5u"), ExtResource("11_2om1x")]
+
+[node name="Increase" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_rt46c")
+volume_db = -80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u5poo")
+}
